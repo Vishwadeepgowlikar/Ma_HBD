@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday My Love ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+    text-align:center;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* layout */
+.container{
+    margin-top:40px;
+    padding-bottom:120px;
+}
+
+h1{ font-size:50px; }
+
+button{
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff4b6e;
+    cursor:pointer;
+}
+
+/* photo */
+.top-photo{
+    display:block;
+    margin:20px auto;
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 0 25px rgba(255,255,255,0.8);
+}
+
+.hidden{ display:none; margin-top:30px; font-size:22px; }
+
+/* confetti */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:blastFall linear forwards;
+}
+@keyframes blastFall{
+    to{ transform:translateY(100vh) rotate(720deg); opacity:0;}
+}
+
+/* heart rain */
+.heart{
+    position:fixed;
+    top:-10px;
+    color:#ff4b6e;
+    animation:heartFall linear forwards;
+}
+@keyframes heartFall{
+    to{ transform:translateY(100vh); opacity:0;}
+}
+
+/* sparkles */
+.sparkle{
+    position:fixed;
+    color:white;
+    font-size:14px;
+    pointer-events:none;
+    animation:sparkleFall linear forwards;
+}
+@keyframes sparkleFall{
+    to{
+        transform:translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+}
+
+/* invisible container for confetti */
+#blastContainer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="blastContainer"></div>
+
+<div class="container">
+<img src="photo1.png" class="top-photo">
+<h1>Happy Birthday Manasa 🎂❤️</h1>
+<p>You are the best thing that ever happened to me.</p>
+
+<button onclick="showMessage()">Click for Surprise 💕</button>
+
+<div id="msg" class="hidden">
+Happy Birthday Sweetheart 💕💖 You’re the most beautiful, I love you more than words can explain 💖 <br>
+Thank you for being in my life 🌸 I always feel Special with you. Seeing you happy and laughing is the only thing I want.
+You are the Best and please keep showering some romance on me 😅😜🤗.
+</div>
+</div>
+
+<script>
+
+/* ✨ sparkles falling from top */
+setInterval(() => {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerHTML = "✨";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.top = "0px";
+    s.style.animationDuration = (2 + Math.random()*3) + "s";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 5000);
+}, 200);
+
+
+/* 🎉 confetti blast */
+function startBlast(){
+const colors=["#ff4b6e","#ffcc00","#00eaff","#7dff7d","#fff"];
+let container=document.getElementById("blastContainer");
+
+let interval=setInterval(()=>{
+for(let i=0;i<12;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*window.innerWidth+"px";
+c.style.background=colors[Math.floor(Math.random()*colors.length)];
+c.style.animationDuration=(2+Math.random()*3)+"s";
+container.appendChild(c);
+setTimeout(()=>c.remove(),4000);
+}
+},200);
+
+setTimeout(()=>clearInterval(interval),5000);
+}
+
+
+/* 💕 surprise click */
+function showMessage() {
+    const msg = document.getElementById("msg");
+    msg.style.display = "block";
+
+    startBlast();
+
+    for(let i=0; i<30; i++){
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (14 + Math.random()*25) + "px";
+        heart.style.animationDuration = (3 + Math.random()*2) + "s";
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),5000);
+    }
+}
+
+/* 🎉 blast when page loads */
+window.onload = startBlast;
+
+</script>
+
+</body>
+</html>
